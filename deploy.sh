@@ -25,7 +25,7 @@ cd ~/projects
 RUN_DIR=$1
 if [ -d ${RUN_DIR} ] ; then echo "$1 already exists... exiting" ; exit 1 ; fi
 
-git clone ${TAG} https://github.com/cspace-deployment/radiance.git ${RUN_DIR}
+cp -r radiance ${RUN_DIR}
 cd ${RUN_DIR}/portal/
 gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
 bundle config set deployment 'true'

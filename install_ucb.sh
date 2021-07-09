@@ -26,10 +26,11 @@ if [ ! -d "${extra_dir}" ]; then
   exit
 fi
 
+# now apply customizations
+
+rsync -av ${extra_dir}/default/ .
+
 # 'customize' the code in the extras directory
-perl -i -pe "s/#TENANT#/${tenant}/g" ${extra_dir}/default/*/* 2>&1
+perl -i -pe "s/#TENANT#/${tenant}/g" */* 2>&1
 
-# now apply customizations, if any
-
-rsync -av ${extra_dir}/default .
-rsync -av ${extra_dir}/{$tenant} .
+rsync -av ${extra_dir}/${tenant}/ .
